@@ -2,7 +2,7 @@
   "name": "heres-a-kana",
   "version": "1.0.0",
   "description": "Japanese Kana Flashcard App",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "client": "npx webpack --watch",
     "server-dev": "nodemon --watch server --watch database server/index.js",
