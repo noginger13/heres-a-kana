@@ -219,3 +219,13 @@ const romaji = [
   'PE',
   'PO'
 ];
+
+// let randomChar = Math.floor(Math.random() * 70);
+// console.log(hiragana[randomChar], katakana[randomChar], romaji[randomChar]);
+
+
+module.exports = {
+  hiragana,
+  katakana,
+  romaji
+};
