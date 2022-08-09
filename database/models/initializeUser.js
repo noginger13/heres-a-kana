@@ -1,9 +1,9 @@
 const db = require('../index.js');
 const { hiragana, katakana, romaji } = require('../../helpers/characters.js');
 
-initializeUser = (username = 'sample') => {
+initializeUser = (userId = 'sample') => {
   let userQuery = `insert into users values ($1)`;
-  let userValues = [username];
+  let userValues = [userId];
 
   let hiraganaString = '';
   let katakanaString = '';
@@ -13,8 +13,8 @@ initializeUser = (username = 'sample') => {
   let count = 1;
 
   for (let i = 0; i < romaji.length; i++) {
-    hiraganaValues.push(username, hiragana[i], romaji[i]);
-    katakanaValues.push(username, katakana[i], romaji[i]);
+    hiraganaValues.push(userId, hiragana[i], romaji[i]);
+    katakanaValues.push(userId, katakana[i], romaji[i]);
 
     if (i === romaji.length - 1) {
       hiraganaString += `(default, ${`$${count}`}, ${`$${count + 1}`}, ${`$${
@@ -34,8 +34,8 @@ initializeUser = (username = 'sample') => {
 
     count += 3;
   }
-  let hiraganaQuery = `insert into hiragana values ${hiraganaString}`;
-  let katakanaQuery = `insert into katakana values ${katakanaString}`;
+  let hiraganaQuery = `insert into kana values ${hiraganaString}`;
+  let katakanaQuery = `insert into kana values ${katakanaString}`;
 
   //DB Transaction builds user items
   (async () => {
