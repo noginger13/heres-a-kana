@@ -4,7 +4,7 @@
   "description": "Japanese Kana Flashcard App",
   "main": "index.js",
   "scripts": {
-    "client": "webpack -d --watch",
+    "client": "npx webpack --watch",
     "server-dev": "nodemon --watch server --watch database server/index.js",
     "server-prod": "NODE_ENV=production node server/index.js"
   },

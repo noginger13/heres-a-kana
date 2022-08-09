@@ -1,19 +1,22 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.js",
   mode: "development",
+  entry: path.resolve(__dirname, 'client/src/index.jsx'),
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'client/dist')
+  },
   module: {
     rules: [
       {
-        exclude: /(node_modules)/,
-        test: /\.(js|jsx)$/i,
+        test: /\.jsx?$/,
+        exclude: [
+          path.resolve(__dirname, 'node_modules')
+        ],
         loader: "babel-loader"
       }
     ]
   },
-  output: {
-    path: path.resolve(__dirname, "dist")
-  },
-  plugins: []
-};
+  devtool: "source-map"
+}
