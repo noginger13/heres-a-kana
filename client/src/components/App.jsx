@@ -10,8 +10,20 @@ const App = () => {
   const [isNotLoggedIn, setLoggedIn] = useState(true);
 
   //Flashcard Variables
-  const [cards, setCards] = useState({});
-  const [currentCard, setCard] = useState(0);
+  const [cards, setCards] = useState([{
+    id: 1,
+    user_id: 'sample',
+    kana: '',
+    romaji: 'A',
+    type: 'hiragana',
+    interval: 1,
+    repitition: 1,
+    ease: 2.5
+  }]);
+  const [cardType, setCardType] = useState(0);
+  const [nextReview, setNextReview] = useState(false);
+  const [cardIndex, setCardIndex] = useState(0);
+  const [currentCard, setCurrentCard] = useState(cards[0]);
 
   //Gallery Variables
   const [view, setView] = useState(false);
@@ -30,6 +42,10 @@ const App = () => {
         setHiragana(response.data.hiragana);
         setKatakana(response.data.katakana);
         setCards(response.data.hiragana.concat(response.data.katakana));
+        setCurrentCard(response.data.hiragana.concat(response.data.katakana)[0]);
+        setNextReview(false);
+        setCardIndex(0);
+        setCardType(0);
 
         if (
           response.data.hiragana[0]['user_id'] !== 'sample' &&
@@ -41,19 +57,24 @@ const App = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [nextReview]);
 
   return (
     <>
       <TopBar view={view} setView={setView} isNotLoggedIn={isNotLoggedIn} />
       <Main
         cards={cards}
-        currentCard={currentCard}
-        setCard={setCard}
         hiragana={hiragana}
         katakana={katakana}
         view={view}
         setView={setView}
+        setNextReview={setNextReview}
+        cardType={cardType}
+        setCardType={setCardType}
+        cardIndex={cardIndex}
+        setCardIndex={setCardIndex}
+        currentCard={currentCard}
+        setCurrentCard={setCurrentCard}
       />
     </>
   );

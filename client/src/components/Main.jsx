@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -6,12 +6,35 @@ import Container from '@mui/material/Container';
 //Components
 import KanaCard from './KanaCard.jsx';
 import RomajiCard from './RomajiCard.jsx';
+import FinalCard from './FinalCard.jsx';
 
-const Main = () => {
+const Main = ({ cards, hiragana, katakana, view, setView, setNextReview, cardType, setCardType, cardIndex, setCurrentCard, currentCard }) => {
+
+  // useEffect(() => {
+  //   setCurrentCard(cards[cardIndex]);
+  // }, [cardIndex]);
+
+  let card;
+  if (cardType === 0) {
+    card = <KanaCard currentCard={currentCard} setCardType={setCardType} />;
+  } else if (cardType === 1) {
+    card = (
+      <RomajiCard
+        currentCard={currentCard}
+        cardIndex={cardIndex}
+        setCurrentCard={setCurrentCard}
+        setCardType={setCardType}
+        cards={cards}
+      />
+    );
+  } else if (cardType === 2) {
+    card = <FinalCard setNextReview={setNextReview} />;
+  }
+
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="80%" sx={{ padding: '15px' }}>
+      <Container maxWidth="90%" sx={{ padding: '15px' }}>
         <Box
           sx={{
             padding: '15px',
@@ -25,9 +48,7 @@ const Main = () => {
             flexDirection: 'column'
           }}
         >
-          <KanaCard />
-
-          <RomajiCard />
+          {card}
         </Box>
       </Container>
     </React.Fragment>

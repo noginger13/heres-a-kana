@@ -5,9 +5,9 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-const KanaCard = ({ setCardType, currentCard }) => {
+const FinalCard = ({ setNextReview }) => {
   const onClick = () => {
-    setCardType(1);
+    setNextReview(true);
   };
 
   return (
@@ -33,14 +33,14 @@ const KanaCard = ({ setCardType, currentCard }) => {
         }}
       >
         <Typography variant="h1" component="h1" sx={{ fontSize: '10rem' }}>
-          {currentCard.kana}
+          🥳
         </Typography>
         <Button onClick={onClick} variant="contained">
-          Show Answer
+          Next Review?
         </Button>
       </Paper>
     </Box>
   );
 };
 
-export default KanaCard;
+export default FinalCard;
