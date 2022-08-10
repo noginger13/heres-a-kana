@@ -1,11 +1,14 @@
 const updateCard = require('../../database/models/updateCard.js');
 
 const postCard = (req, res) => {
-  updateCard(req.body).then((result) => {
-    console.log(result);
-    // console.log(result.command, result.rowCount);
-    res.sendStatus(201);
-  });
+  updateCard(req.body)
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 };
 
 module.exports = postCard;

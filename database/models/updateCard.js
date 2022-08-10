@@ -5,15 +5,10 @@ const setMetrics = require('../../helpers/setMetrics.js');
 
 const updateCard = (card) => {
   let newCard = setMetrics(card);
-  delete newCard.score;
-  console.log('newCard', newCard);
+  let updateCardQuery = `update ${card.type} set interval = $1, repitition = $2, ease = $3 where id = $4`;
+  let updateCardValues = [card.interval, card.repitition, card.ease, card.id];
 
-  return 'done';
-  // let newCard = setMetrics(card);
-  // let updateCardQuery = 'update $1 set  = next + 1 where id = $1';
-  // let updateCardValues = [id];
-
-  // return db.query(updateCardQuery, updateCardValues);
+  return db.query(updateCardQuery, updateCardValues);
 };
 
 module.exports = updateCard;
