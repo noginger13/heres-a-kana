@@ -4,7 +4,8 @@
   "description": "Japanese Kana Flashcard App",
   "main": "server/index.js",
   "scripts": {
-    "build-db": "psql -d kanaapi -f database/models/schema.sql",
+    "build-db": "psql -d kanaapi -f database/schema.sql",
+    "seed-db": "node database/models/seedDatabase.js",
     "client": "npx webpack --watch",
     "server-dev": "nodemon --watch server --watch database server/index.js",
     "server-prod": "NODE_ENV=production node server/index.js"

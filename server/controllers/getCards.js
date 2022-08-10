@@ -1,15 +1,20 @@
-const getDueCards = require('../../database/models/getDueCards.js');
+const getHiraganaCards = require('../../database/models/getHiraganaCards.js');
+const getKatakanaCards = require('../../database/models/getKatakanaCards.js');
 
 const getCards = (req, res) => {
-  getDueCards()
-  .then((cards) => {
-    res.send(cards.rows);
-    res.status(200);
-  })
-  .catch((err) => {
-    console.log(err);
-    res.sendStatus(500);
-  })
+  let dueCards = {};
+
+  Promise.all([getHiraganaCards(), getKatakanaCards()])
+    .then((cards) => {
+      dueCards.hiragana = cards[0].rows;
+      dueCards.katakana = cards[1].rows;
+      res.send(dueCards);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 };
 
 module.exports = getCards;
