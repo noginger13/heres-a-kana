@@ -9,7 +9,7 @@ const getCards = (req, res) => {
       dueCards.hiragana = cards[0].rows;
       dueCards.katakana = cards[1].rows;
       res.send(dueCards);
-      res.sendStatus(200);
+      res.status(200);
     })
     .catch((err) => {
       console.log(err);
