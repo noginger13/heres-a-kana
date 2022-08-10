@@ -30,7 +30,7 @@ ALTER TABLE
 CREATE TABLE "hiragana"(
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
-    "hiragana" TEXT NOT NULL,
+    "kana" TEXT NOT NULL,
     "romaji" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "interval" INTEGER NOT NULL,
@@ -51,7 +51,7 @@ CREATE INDEX
 CREATE TABLE "katakana"(
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
-    "katakana" TEXT NOT NULL,
+    "kana" TEXT NOT NULL,
     "romaji" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "interval" INTEGER NOT NULL,
