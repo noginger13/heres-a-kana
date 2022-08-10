@@ -1,7 +1,11 @@
 const db = require('../index.js');
 
-const updateCard = (id = 96) => {
-  let updateCardQuery = 'update kana set next = next + 1 where id = $1';
+//Helper
+const setMetrics = require('../../helpers/setMetrics.js');
+
+const updateCard = (card) => {
+  let newCard = setMetrics(card);
+  let updateCardQuery = 'update $1 set  = next + 1 where id = $1';
   let updateCardValues = [id];
 
   return db.query(updateCardQuery, updateCardValues);

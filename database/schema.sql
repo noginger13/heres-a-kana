@@ -32,6 +32,7 @@ CREATE TABLE "hiragana"(
     "user_id" TEXT NOT NULL,
     "hiragana" TEXT NOT NULL,
     "romaji" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
     "interval" INTEGER NOT NULL,
     "repitition" INTEGER NOT NULL,
     "ease" DOUBLE PRECISION NOT NULL
@@ -52,6 +53,7 @@ CREATE TABLE "katakana"(
     "user_id" TEXT NOT NULL,
     "katakana" TEXT NOT NULL,
     "romaji" TEXT NOT NULL,
+    "type" TEXT NOT NULL,
     "interval" INTEGER NOT NULL,
     "repitition" INTEGER NOT NULL,
     "ease" DOUBLE PRECISION NOT NULL

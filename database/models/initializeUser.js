@@ -19,17 +19,17 @@ const initializeUser = (userId = 'sample') => {
     if (i === romaji.length - 1) {
       hiraganaString += `(default, ${`$${count}`}, ${`$${count + 1}`}, ${`$${
         count + 2
-      }`}, 1, 1, 2.5);`;
+      }`}, 'hiragana', 1, 1, 2.5);`;
       katakanaString += `(default, ${`$${count}`}, ${`$${count + 1}`}, ${`$${
         count + 2
-      }`}, 1, 1, 2.5);`;
+      }`}, 'katakana', 1, 1, 2.5);`;
     } else {
       hiraganaString += `(default, ${`$${count}`}, ${`$${count + 1}`}, ${`$${
         count + 2
-      }`}, 1, 1, 2.5), `;
+      }`}, 'hiragana', 1, 1, 2.5), `;
       katakanaString += `(default, ${`$${count}`}, ${`$${count + 1}`}, ${`$${
         count + 2
-      }`}, 1, 1, 2.5), `;
+      }`}, 'katakana', 1, 1, 2.5), `;
     }
 
     count += 3;
