@@ -17,10 +17,11 @@ const RomajiCard = ({
   const onClick = (e) => {
     currentCard.score = Number(e.target.value);
     postScore(currentCard);
+    setCardIndex(cardIndex + 1)
     if (cardIndex === cards.length - 1) {
       setCardType(2);
     } else {
-      setCurrentCard(cards[cardIndex + 1]);
+      // setCurrentCard(cards[cardIndex]);
       setCardType(0);
     }
   };

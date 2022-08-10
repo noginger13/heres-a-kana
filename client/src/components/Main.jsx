@@ -8,11 +8,24 @@ import KanaCard from './KanaCard.jsx';
 import RomajiCard from './RomajiCard.jsx';
 import FinalCard from './FinalCard.jsx';
 
-const Main = ({ cards, hiragana, katakana, view, setView, setNextReview, cardType, setCardType, cardIndex, setCurrentCard, currentCard }) => {
+const Main = ({
+  cards,
+  hiragana,
+  katakana,
+  view,
+  setView,
+  setNextReview,
+  cardType,
+  setCardType,
+  cardIndex,
+  setCardIndex,
+  setCurrentCard,
+  currentCard
+}) => {
 
-  // useEffect(() => {
-  //   setCurrentCard(cards[cardIndex]);
-  // }, [cardIndex]);
+  useEffect(() => {
+    setCurrentCard(cards[cardIndex]);
+  }, [cardIndex]);
 
   let card;
   if (cardType === 0) {
@@ -21,8 +34,9 @@ const Main = ({ cards, hiragana, katakana, view, setView, setNextReview, cardTyp
     card = (
       <RomajiCard
         currentCard={currentCard}
-        cardIndex={cardIndex}
         setCurrentCard={setCurrentCard}
+        cardIndex={cardIndex}
+        setCardIndex={setCardIndex}
         setCardType={setCardType}
         cards={cards}
       />
