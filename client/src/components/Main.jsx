@@ -4,9 +4,8 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 //Components
-import KanaCard from './KanaCard.jsx';
-import RomajiCard from './RomajiCard.jsx';
-import FinalCard from './FinalCard.jsx';
+import FlashCardView from './FlashCardView.jsx';
+import ReviewView from './ReviewView.jsx';
 
 const Main = ({
   cards,
@@ -22,48 +21,29 @@ const Main = ({
   setCurrentCard,
   currentCard
 }) => {
-
-  useEffect(() => {
-    setCurrentCard(cards[cardIndex]);
-  }, [cardIndex]);
-
-  let card;
-  if (cardType === 0) {
-    card = <KanaCard currentCard={currentCard} setCardType={setCardType} />;
-  } else if (cardType === 1) {
-    card = (
-      <RomajiCard
-        currentCard={currentCard}
-        setCurrentCard={setCurrentCard}
+  let content;
+  if (view) {
+    content = (
+      <FlashCardView
+        cards={cards}
+        setNextReview={setNextReview}
+        cardType={cardType}
+        setCardType={setCardType}
         cardIndex={cardIndex}
         setCardIndex={setCardIndex}
-        setCardType={setCardType}
-        cards={cards}
+        setCurrentCard={setCurrentCard}
+        currentCard={currentCard}
       />
     );
-  } else if (cardType === 2) {
-    card = <FinalCard setNextReview={setNextReview} />;
+  } else {
+    content = <ReviewView hiragana={hiragana} katakana={katakana} />;
   }
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container maxWidth="90%" sx={{ padding: '15px' }}>
-        <Box
-          sx={{
-            padding: '15px',
-            bgcolor: '#cfe8fc',
-            height: '100%',
-            maxWidth: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            overflow: 'auto',
-            justifyContent: 'space-around',
-            flexDirection: 'column'
-          }}
-        >
-          {card}
-        </Box>
+      <Container maxWidth="90%" sx={{ flexWrap: 'wrap', padding: '15px' }}>
+        {content}
       </Container>
     </React.Fragment>
   );
