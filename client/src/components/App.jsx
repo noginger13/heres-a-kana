@@ -58,7 +58,7 @@ const App = () => {
       .catch(function (error) {
         console.log(error);
       });
-  }, [nextReview]);
+  }, [nextReview, view]);
 
   useEffect(() => {
     const config = {
