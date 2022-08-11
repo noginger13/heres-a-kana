@@ -10,6 +10,7 @@ const ReviewView = ({ hiragana, katakana }) => {
   return (
     <Box
       sx={{
+        margin: '5px',
         padding: '15px',
         bgcolor: '#cfe8fc',
         height: '100%',

@@ -7,6 +7,7 @@ import Main from './Main.jsx';
 
 const App = () => {
   //User Variables
+  const [userEmail, setUserEmail] = useState('');
   const [isNotLoggedIn, setLoggedIn] = useState(true);
 
   //Flashcard Variables
@@ -26,9 +27,38 @@ const App = () => {
   const [currentCard, setCurrentCard] = useState(cards[0]);
 
   //Gallery Variables
-  const [view, setView] = useState(false);
+  const [view, setView] = useState(true);
   const [hiragana, setHiragana] = useState([]);
   const [katakana, setKatakana] = useState([]);
+
+  useEffect(() => {
+    const config = {
+      method: 'get',
+      url: '/kana/',
+      headers: {}
+    };
+
+    axios(config)
+      .then((response) => {
+        setHiragana(response.data.hiragana);
+        setKatakana(response.data.katakana);
+        setCards(response.data.hiragana.concat(response.data.katakana));
+        setCurrentCard(response.data.hiragana.concat(response.data.katakana)[0]);
+        setNextReview(false);
+        setCardIndex(0);
+        setCardType(0);
+
+        if (
+          response.data.hiragana[0]['user_id'] !== 'sample' &&
+          response.data.hiragana.length !== 0
+        ) {
+          setLoggedIn(true);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [nextReview]);
 
   useEffect(() => {
     const config = {

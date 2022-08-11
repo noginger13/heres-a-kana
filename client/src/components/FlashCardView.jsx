@@ -42,9 +42,11 @@ const FlashCardView = ({
   return (
     <Box
       sx={{
-        padding: '15px',
+        margin: '5px',
         bgcolor: '#cfe8fc',
-        height: '100%',
+        minHeight: '300',
+        height: '90vh',
+        maxHeight: '100%',
         maxWidth: '100%',
         display: 'flex',
         alignItems: 'center',

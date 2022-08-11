@@ -13,7 +13,7 @@ const TopBar = ({ view, setView, isNotLoggedIn }) => {
   };
 
   let viewButton;
-  if (view) {
+  if (!view) {
     viewButton = (
       <Button onClick={onClick} color="inherit">
         Review Cards
