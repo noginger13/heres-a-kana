@@ -25,7 +25,7 @@ const ScoreExplanation = ({ open, setOpen }) => {
         </DialogContentText>
           <ul>
             <li>0: Didn't know it or recall it. 😩</li>
-            <li>1: Didin't know the card but do recall it. 😲</li>
+            <li>1: Didn't know the card but do recall it. 😲</li>
             <li>2: Didn't know it but wasn't far of. 🤨</li>
             <li>3: Got it eventually. 😊</li>
             <li>4: Got it after a second. 😎</li>
