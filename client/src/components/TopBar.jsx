@@ -29,21 +29,31 @@ const TopBar = ({ view, setView, isNotLoggedIn }) => {
 
   let loginButton;
   if (isNotLoggedIn) {
-    loginButton = <Button color="inherit">Login</Button>;
+    loginButton = (
+      <Button href="/login/" color="inherit">
+        Login
+      </Button>
+    );
+  } else {
+    loginButton = (
+      <Button href="/logout/" color="inherit">
+        Logout
+      </Button>
+    );
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Here's a Kana!
-          </Typography>
-          {viewButton}
-          {loginButton}
-        </Toolbar>
-      </AppBar>
-    </Box>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Here's a Kana!
+            </Typography>
+            {viewButton}
+            {loginButton}
+          </Toolbar>
+        </AppBar>
+      </Box>
   );
 };
 
