@@ -30,11 +30,20 @@ const RomajiCard = ({
       } else {
         setCardType(0);
       }
+    } else {
+      setCardIndex(cardIndex + 1);
+      if (cardIndex === cards.length - 1) {
+        setCardType(2);
+      } else if (cardIndex % 4 === 0) {
+        setCardType(3);
+      } else {
+        setCardType(0);
+      }
     }
   };
 
   useEffect(() => {
-    if (cardIndex === 0) {
+    if (cardIndex === 0 && currentCard.user_id === 'sample') {
       setOpen(true);
     }
   }, []);

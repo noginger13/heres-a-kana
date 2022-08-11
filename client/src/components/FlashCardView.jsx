@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import KanaCard from './KanaCard.jsx';
 import RomajiCard from './RomajiCard.jsx';
 import FinalCard from './FinalCard.jsx';
+import SignupCard from './SignupCard.jsx';
 
 const FlashCardView = ({
   cards,
@@ -37,6 +38,8 @@ const FlashCardView = ({
     );
   } else if (cardType === 2) {
     card = <FinalCard setNextReview={setNextReview} />;
+  } else if (cardType === 3) {
+    card = <SignupCard setCardType={setCardType} />
   }
 
   return (
