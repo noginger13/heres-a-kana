@@ -25,8 +25,8 @@ app.use(
 app.use(express.json());
 app.use(express.static('client/dist'));
 
-app.get('/user/', requiresAuth(), (req, res) => {
-  res.send(req.oidc.user.email);
+app.get('/user/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'yup' : 'nope');
 });
 
 app.get('/kana/', getCards);

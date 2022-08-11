@@ -8,19 +8,21 @@ import Main from './Main.jsx';
 const App = () => {
   //User Variables
   const [userEmail, setUserEmail] = useState('');
-  const [isNotLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   //Flashcard Variables
-  const [cards, setCards] = useState([{
-    id: 1,
-    user_id: 'sample',
-    kana: '',
-    romaji: 'A',
-    type: 'hiragana',
-    interval: 1,
-    repitition: 1,
-    ease: 2.5
-  }]);
+  const [cards, setCards] = useState([
+    {
+      id: 1,
+      user_id: 'sample',
+      kana: '',
+      romaji: 'A',
+      type: 'hiragana',
+      interval: 1,
+      repitition: 1,
+      ease: 2.5
+    }
+  ]);
   const [cardType, setCardType] = useState(0);
   const [nextReview, setNextReview] = useState(false);
   const [cardIndex, setCardIndex] = useState(0);
@@ -31,6 +33,25 @@ const App = () => {
   const [hiragana, setHiragana] = useState([]);
   const [katakana, setKatakana] = useState([]);
 
+  //Get State
+  useEffect(() => {
+    const config = {
+      method: 'get',
+      url: '/user/',
+      headers: {}
+    };
+
+    axios(config)
+      .then((response) => {
+        if (response.data === 'yup') {
+          setLoggedIn(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   useEffect(() => {
     const config = {
       method: 'get',
@@ -43,55 +64,21 @@ const App = () => {
         setHiragana(response.data.hiragana);
         setKatakana(response.data.katakana);
         setCards(response.data.hiragana.concat(response.data.katakana));
-        setCurrentCard(response.data.hiragana.concat(response.data.katakana)[0]);
+        setCurrentCard(
+          response.data.hiragana.concat(response.data.katakana)[0]
+        );
         setNextReview(false);
         setCardIndex(0);
         setCardType(0);
-
-        if (
-          response.data.hiragana[0]['user_id'] !== 'sample' &&
-          response.data.hiragana.length !== 0
-        ) {
-          setLoggedIn(true);
-        }
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }, [nextReview, view]);
 
-  useEffect(() => {
-    const config = {
-      method: 'get',
-      url: '/kana/',
-      headers: {}
-    };
-
-    axios(config)
-      .then((response) => {
-        setHiragana(response.data.hiragana);
-        setKatakana(response.data.katakana);
-        setCards(response.data.hiragana.concat(response.data.katakana));
-        setCurrentCard(response.data.hiragana.concat(response.data.katakana)[0]);
-        setNextReview(false);
-        setCardIndex(0);
-        setCardType(0);
-
-        if (
-          response.data.hiragana[0]['user_id'] !== 'sample' &&
-          response.data.hiragana.length !== 0
-        ) {
-          setLoggedIn(true);
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, [nextReview]);
-
   return (
     <>
-      <TopBar view={view} setView={setView} isNotLoggedIn={isNotLoggedIn} />
+      <TopBar view={view} setView={setView} isLoggedIn={isLoggedIn} />
       <Main
         cards={cards}
         hiragana={hiragana}

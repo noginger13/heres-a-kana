@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const TopBar = ({ view, setView, isNotLoggedIn }) => {
+const TopBar = ({ view, setView, isLoggedIn }) => {
   const onClick = () => {
     setView(!view);
   };
@@ -28,16 +28,16 @@ const TopBar = ({ view, setView, isNotLoggedIn }) => {
   }
 
   let loginButton;
-  if (isNotLoggedIn) {
+  if (isLoggedIn) {
     loginButton = (
-      <Button href="/login/" color="inherit">
-        Login
+      <Button href="/logout/" color="inherit">
+        Logout
       </Button>
     );
   } else {
     loginButton = (
-      <Button href="/logout/" color="inherit">
-        Logout
+      <Button href="/login/" color="inherit">
+        Login
       </Button>
     );
   }
