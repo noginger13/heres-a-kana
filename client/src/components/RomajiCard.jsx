@@ -1,10 +1,14 @@
 import axios from 'axios';
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+
+//Components
+import ScoreExplanation from './ScoreExplanation.jsx';
 
 const RomajiCard = ({
   currentCard,
@@ -14,17 +18,26 @@ const RomajiCard = ({
   setCardType,
   cards
 }) => {
+  const [open, setOpen] = useState(false);
+
   const onClick = (e) => {
-    currentCard.score = Number(e.target.value);
-    postScore(currentCard);
-    setCardIndex(cardIndex + 1)
-    if (cardIndex === cards.length - 1) {
-      setCardType(2);
-    } else {
-      // setCurrentCard(cards[cardIndex]);
-      setCardType(0);
+    if (currentCard.user_id !== 'sample') {
+      currentCard.score = Number(e.target.value);
+      postScore(currentCard);
+      setCardIndex(cardIndex + 1);
+      if (cardIndex === cards.length - 1) {
+        setCardType(2);
+      } else {
+        setCardType(0);
+      }
     }
   };
+
+  useEffect(() => {
+    if (cardIndex === 0) {
+      setOpen(true);
+    }
+  }, []);
 
   const postScore = (card) => {
     var data = JSON.stringify(card);
@@ -35,17 +48,17 @@ const RomajiCard = ({
       headers: {
         'Content-Type': 'application/json'
       },
-      data : data
+      data: data
     };
 
     axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <Box
@@ -98,6 +111,7 @@ const RomajiCard = ({
               5
             </Button>
           </ButtonGroup>
+          <ScoreExplanation open={open} setOpen={setOpen} />
         </div>
       </Paper>
     </Box>
