@@ -37,24 +37,6 @@ const App = () => {
   useEffect(() => {
     const config = {
       method: 'get',
-      url: '/user/',
-      headers: {}
-    };
-
-    axios(config)
-      .then((response) => {
-        if (response.data === 'yup') {
-          setLoggedIn(true);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
-  useEffect(() => {
-    const config = {
-      method: 'get',
       url: '/kana/',
       headers: {}
     };
@@ -75,6 +57,24 @@ const App = () => {
         console.log(error);
       });
   }, [nextReview, view]);
+
+  useEffect(() => {
+    const config = {
+      method: 'get',
+      url: '/user/',
+      headers: {}
+    };
+
+    axios(config)
+      .then((response) => {
+        if (response.data === 'yup') {
+          setLoggedIn(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <>
