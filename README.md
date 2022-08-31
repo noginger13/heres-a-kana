@@ -30,7 +30,7 @@ Once signed up and logged in, the user will be presented with only their cards t
 ![Personal Deck](https://user-images.githubusercontent.com/98896929/187710439-bda8c985-c074-481d-b493-77447cd37f84.gif)
 
 ## Getting Started
-### Installation
+### Setup
 1. Install dependencies
 ```
 npm install
