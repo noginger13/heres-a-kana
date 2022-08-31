@@ -11,6 +11,7 @@ This project was completed as part of a two day sprint.
 ![Auth0](https://img.shields.io/badge/-Auth0-c9cace?logo=auth0&logoColor=black&style=for-the-badge)
 ![Axios](https://img.shields.io/badge/-Axios-5A29E4?logo=axios&logoColor=black&style=for-the-badge)
 ![Node](https://img.shields.io/badge/-Node-9ACD32?logo=node.js&logoColor=white&style=for-the-badge)
+![Nodemon](https://img.shields.io/badge/-Nodemon-76D04B?logo=nodemon&logoColor=white&style=for-the-badge)
 ![Express](https://img.shields.io/badge/express-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
